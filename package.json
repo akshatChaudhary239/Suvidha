@@ -1,0 +1,19 @@
+{
+  "name": "suvidha-monorepo",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:generate": "pnpm --filter @suvidha/db db:generate",
+    "db:push": "pnpm --filter @suvidha/db db:push",
+    "db:studio": "pnpm --filter @suvidha/db db:studio"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "turbo": "^2.1.3",
+    "typescript": "^5.6.3"
+  },
+  "packageManager": "pnpm@9.12.2"
+}

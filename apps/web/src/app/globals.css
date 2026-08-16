@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-base: #FAF3E7;
+  --color-ink: #6B1E2A;
+  --color-royal: #0E4D3C;
+  --color-accent: #C9A227;
+  --color-ink-dark: #231A15;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-ink-dark);
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-royal);
+}
+
+/* Gold foil linear border utility */
+.gold-border {
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 0 10px rgba(201, 162, 39, 0.2);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #C9A227 0%, #F3E5AB 50%, #B8860B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #C9A227 0%, #D4AF37 50%, #B8860B 100%);
+}
+
+/* Subtle Paisley Motif Background Overlay */
+.paisley-bg {
+  background-image: radial-gradient(rgba(107, 30, 42, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
