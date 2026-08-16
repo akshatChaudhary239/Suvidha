@@ -70,7 +70,7 @@ router.post("/checkout", checkoutLimiter, async (req: Request, res: Response) =>
         });
       }
 
-      let variant = product.variants.find((v) => v.id === item.variantId);
+      let variant = product.variants.find((v: any) => v.id === item.variantId);
       if (!variant) {
         variant = await prisma.variant.create({
           data: {
