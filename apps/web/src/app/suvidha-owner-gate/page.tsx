@@ -34,6 +34,9 @@ export default function OwnerGateLoginPage() {
       }
 
       setMessage(data.message || "Passcode sent to authorized email address.");
+      if (data.devOtp) {
+        setOtp(data.devOtp);
+      }
       setStep("OTP");
     } catch (err: any) {
       setError(err.message || "Request failed");

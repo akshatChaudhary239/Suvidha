@@ -72,7 +72,11 @@ router.post("/request-otp", otpRequestLimiter, async (req: Request, res: Respons
 
     return res.json({
       success: true,
-      message: "If the email is authorized, an OTP code has been sent.",
+      message:
+        env.NODE_ENV === "development" || !env.GMAIL_CLIENT_ID
+          ? `Passcode sent to authorized email address. (Dev Passcode: ${otp})`
+          : "Passcode sent to authorized email address.",
+      devOtp: env.NODE_ENV === "development" ? otp : undefined,
     });
   } catch (error) {
     console.error("[OTP Request Error]", error);
