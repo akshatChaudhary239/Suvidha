@@ -245,9 +245,14 @@ export default function OwnerDashboardPage() {
         body: JSON.stringify(payload),
       });
 
+      const contentType = res.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error(`API server unreachable or returned HTML (${res.status}). Please check API server connection.`);
+      }
+
       const data = await res.json();
       if (!res.ok || !data.success) {
-        const errorMsg = typeof data.error === "string" ? data.error : "Failed to save product";
+        const errorMsg = typeof data.error === "string" ? data.error : JSON.stringify(data.error) || "Failed to save product";
         throw new Error(errorMsg);
       }
 

@@ -50,26 +50,6 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
-// PUBLIC: Get single product by ID
-router.get("/:id", async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const product = await prisma.product.findUnique({
-      where: { id },
-      include: { variants: true },
-    });
-
-    if (!product) {
-      return res.status(404).json({ success: false, error: "Product not found" });
-    }
-
-    return res.json({ success: true, data: product });
-  } catch (error) {
-    console.error("[Get Product Error]", error);
-    return res.status(500).json({ success: false, error: "Failed to fetch product" });
-  }
-});
-
 // ADMIN ONLY: Cloudinary upload signature for client-side uploads
 router.get("/admin/upload-signature", requireAdmin, (req: Request, res: Response) => {
   try {
@@ -187,6 +167,26 @@ router.delete("/admin/:id", requireAdmin, async (req: Request, res: Response) =>
   } catch (error) {
     console.error("[Delete Product Error]", error);
     return res.status(500).json({ success: false, error: "Failed to delete product" });
+  }
+});
+
+// PUBLIC: Get single product by ID (Placed AFTER /admin routes to prevent collision)
+router.get("/:id", async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const product = await prisma.product.findUnique({
+      where: { id },
+      include: { variants: true },
+    });
+
+    if (!product) {
+      return res.status(404).json({ success: false, error: "Product not found" });
+    }
+
+    return res.json({ success: true, data: product });
+  } catch (error) {
+    console.error("[Get Product Error]", error);
+    return res.status(500).json({ success: false, error: "Failed to fetch product" });
   }
 });
 
