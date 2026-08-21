@@ -2,7 +2,9 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Shield, KeyRound, ArrowRight } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Shield, KeyRound, ArrowRight, Lock, Sparkles } from "lucide-react";
 
 export default function OwnerGateLoginPage() {
   const router = useRouter();
@@ -70,91 +72,102 @@ export default function OwnerGateLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-ink-dark text-base flex items-center justify-center p-4 paisley-bg">
-      <div className="w-full max-w-md bg-base text-ink-dark p-8 rounded-sm shadow-2xl border border-accent/40">
-        <div className="text-center mb-8">
-          <div className="w-12 h-12 bg-ink text-accent rounded-full flex items-center justify-center mx-auto mb-3">
-            <Shield className="w-6 h-6" />
-          </div>
-          <h1 className="font-serif text-3xl text-ink font-bold">Owner Access Portal</h1>
-          <p className="text-xs text-ink/60 font-sans mt-1">Private identity authentication</p>
-        </div>
-
-        {error && (
-          <div className="p-3 bg-red-100 text-red-800 text-xs rounded mb-6 border border-red-200">
-            {error}
-          </div>
-        )}
-
-        {message && (
-          <div className="p-3 bg-green-100 text-green-800 text-xs rounded mb-6 border border-green-200">
-            {message}
-          </div>
-        )}
-
-        {step === "EMAIL" ? (
-          <form onSubmit={handleRequestOtp} className="space-y-4">
-            <div>
-              <label className="block text-xs font-sans text-ink-dark font-semibold mb-1">
-                Authorized Admin Email
-              </label>
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2.5 text-xs border border-accent/30 rounded bg-white focus:outline-none focus:border-ink"
-                placeholder="owner@suvidhaclothing.com"
-              />
+    <>
+      <Header />
+      <main className="min-h-[80vh] bg-[#FAF6F0] flex items-center justify-center p-6 paisley-bg">
+        <div className="w-full max-w-md bg-white p-8 rounded-md shadow-2xl border-2 border-[#C9A227] space-y-6">
+          <div className="text-center space-y-3">
+            <div className="w-14 h-14 bg-[#5B1420] text-[#D4AF37] rounded-full flex items-center justify-center mx-auto shadow-md border-2 border-[#C9A227]">
+              <Shield className="w-7 h-7" />
             </div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF6F0] border border-[#C9A227]/50 text-[#5B1420] text-[10px] font-sans uppercase font-bold tracking-widest">
+              <Lock className="w-3 h-3 text-[#C9A227]" /> Private Owner Gate
+            </div>
+            <h1 className="font-serif text-3xl text-[#5B1420] font-bold tracking-wide">
+              Suvidha Owner Access
+            </h1>
+            <p className="text-xs text-[#231A15]/70 font-sans font-medium">
+              Restricted identity passcode verification
+            </p>
+          </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 bg-ink text-accent font-sans text-xs uppercase tracking-widest rounded hover:bg-royal transition-colors font-semibold flex items-center justify-center gap-2"
-            >
-              {loading ? "Checking Allowlist..." : "Send Passcode"}
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </form>
-        ) : (
-          <form onSubmit={handleVerifyOtp} className="space-y-4">
-            <div>
-              <label className="block text-xs font-sans text-ink-dark font-semibold mb-1">
-                Enter 6-Digit Passcode
-              </label>
-              <div className="relative">
+          {error && (
+            <div className="p-3 bg-red-100 text-red-800 text-xs font-semibold rounded border border-red-200">
+              {error}
+            </div>
+          )}
+
+          {message && (
+            <div className="p-3 bg-green-100 text-green-800 text-xs font-semibold rounded border border-green-200">
+              {message}
+            </div>
+          )}
+
+          {step === "EMAIL" ? (
+            <form onSubmit={handleRequestOtp} className="space-y-4">
+              <div>
+                <label className="block text-xs font-sans text-[#231A15] font-bold mb-1.5">
+                  Authorized Admin Email *
+                </label>
                 <input
-                  type="text"
-                  maxLength={6}
+                  type="email"
                   required
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  className="w-full px-3 py-2.5 text-center tracking-[0.5em] text-lg font-bold border border-accent/30 rounded bg-white focus:outline-none focus:border-ink"
-                  placeholder="000000"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-3.5 py-2.5 text-xs font-medium border-2 border-[#C9A227]/40 rounded bg-[#FAF6F0] text-[#231A15] focus:outline-none focus:border-[#5B1420] transition-colors"
+                  placeholder="owner@suvidhaclothing.com"
                 />
-                <KeyRound className="w-4 h-4 text-ink/40 absolute left-3 top-3.5" />
               </div>
-            </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 bg-ink text-accent font-sans text-xs uppercase tracking-widest rounded hover:bg-royal transition-colors font-semibold"
-            >
-              {loading ? "Verifying..." : "Authenticate & Access"}
-            </button>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3.5 bg-[#5B1420] text-[#D4AF37] font-sans text-xs uppercase tracking-widest rounded-sm hover:bg-[#0E4D3C] transition-colors font-bold shadow-lg flex items-center justify-center gap-2 border border-[#C9A227]"
+              >
+                {loading ? "Checking Allowlist..." : "Send Passcode"}
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </form>
+          ) : (
+            <form onSubmit={handleVerifyOtp} className="space-y-4">
+              <div>
+                <label className="block text-xs font-sans text-[#231A15] font-bold mb-1.5">
+                  Enter 6-Digit Passcode *
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    maxLength={6}
+                    required
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    className="w-full px-3.5 py-2.5 text-center tracking-[0.5em] text-lg font-bold border-2 border-[#C9A227]/50 rounded bg-[#FAF6F0] text-[#5B1420] focus:outline-none focus:border-[#5B1420]"
+                    placeholder="000000"
+                  />
+                  <KeyRound className="w-4 h-4 text-[#5B1420]/50 absolute left-3.5 top-3.5" />
+                </div>
+              </div>
 
-            <button
-              type="button"
-              onClick={() => setStep("EMAIL")}
-              className="w-full text-center text-xs text-ink/60 hover:text-ink mt-2"
-            >
-              ← Re-enter email
-            </button>
-          </form>
-        )}
-      </div>
-    </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3.5 bg-[#5B1420] text-[#D4AF37] font-sans text-xs uppercase tracking-widest rounded-sm hover:bg-[#0E4D3C] transition-colors font-bold shadow-lg border border-[#C9A227]"
+              >
+                {loading ? "Verifying..." : "Authenticate & Access"}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setStep("EMAIL")}
+                className="w-full text-center text-xs text-[#231A15]/70 hover:text-[#5B1420] font-semibold mt-2"
+              >
+                ← Re-enter email address
+              </button>
+            </form>
+          )}
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }
