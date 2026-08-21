@@ -114,7 +114,7 @@ const bilyznaStyleProducts = [
 function HomeMain() {
   const { addToCart } = useCart();
   const heroRef = useRef<HTMLDivElement>(null);
-  const [products, setProducts] = useState<any[]>(bilyznaStyleProducts);
+  const [products, setProducts] = useState<any[]>([]);
 
   useEffect(() => {
     async function loadLiveProducts() {

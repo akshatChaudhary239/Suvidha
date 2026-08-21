@@ -86,7 +86,7 @@ const mockProducts: Product[] = [
 
 function ShopContent() {
   const { addToCart } = useCart();
-  const [products, setProducts] = useState<Product[]>(mockProducts);
+  const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   useEffect(() => {
