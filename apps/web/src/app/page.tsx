@@ -108,10 +108,10 @@ function HomeMain() {
     <main className="flex-1 bg-base text-ink-dark font-sans">
       {/* 1. HERO SECTION — Editorial Layout inspired by bilyzna-shop */}
       <section ref={heroRef} className="relative min-h-[90vh] bg-ink text-base overflow-hidden flex flex-col justify-between">
-        <div className="absolute inset-0 z-0 opacity-40">
+        <div className="absolute inset-0 z-0 opacity-50">
           <Image
-            src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1920&q=80"
-            alt="Suvidha Royal Suit Collection"
+            src="/hero-banner.jpg"
+            alt="Suvidha Royal Ethnic Wear Collection"
             fill
             className="object-cover object-center"
             priority
@@ -182,8 +182,8 @@ function HomeMain() {
             <div className="bg-white/10 backdrop-blur-md p-6 rounded border border-accent/30 text-base space-y-4 shadow-2xl">
               <div className="relative h-64 w-full rounded overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80"
-                  alt="Spotlight Suit"
+                  src="/hero-banner.jpg"
+                  alt="Spotlight Suit Ensemble"
                   fill
                   className="object-cover"
                 />
