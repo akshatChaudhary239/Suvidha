@@ -110,23 +110,23 @@ function HomeMain() {
       <section ref={heroRef} className="relative min-h-[85vh] bg-[#FAF6F0] text-ink-dark overflow-hidden flex flex-col justify-between border-b-2 border-accent/30 paisley-bg">
         
         {/* Top Announcement Bar */}
-        <div className="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-6 flex justify-between items-center text-xs uppercase font-sans tracking-widest font-bold">
+        <div className="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8 pb-4 flex justify-between items-center text-xs uppercase font-sans tracking-widest font-bold">
           <span className="flex items-center gap-2 text-ink">
             <span className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
             Suvidha Heritage Couture 2026
           </span>
-          <span className="hidden sm:inline text-royal font-bold">Handcrafted Pure Silk & Zari Collection</span>
+          <span className="hidden sm:inline text-royal font-extrabold">Handcrafted Pure Silk & Zari Collection</span>
         </div>
 
         {/* Hero Central Content Container (Side-by-Side) */}
-        <div className="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Royal Typography & High-Contrast Text */}
           <div className="lg:col-span-6 space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border-2 border-accent/60 text-ink text-xs font-sans uppercase font-bold shadow-md"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border-2 border-accent text-ink text-xs font-sans uppercase font-bold shadow-md"
             >
               <Sparkles className="w-4 h-4 text-accent font-bold" /> Royal Ethnic Collection
             </motion.div>
@@ -145,14 +145,14 @@ function HomeMain() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-white p-6 rounded-md border-2 border-accent/30 text-ink-dark shadow-lg space-y-2"
+              className="bg-white p-6 rounded-md border-2 border-[#C9A227] text-[#231A15] shadow-xl space-y-3"
             >
-              <p className="text-sm sm:text-base font-medium leading-relaxed">
+              <p className="text-base sm:text-lg font-semibold leading-relaxed text-[#231A15]">
                 Experience pure silk Anarkalis, intricate Sharara sets, and Palazzo ensembles designed for timeless grace. Handcrafted with traditional gold threadwork.
               </p>
-              <div className="flex items-center gap-4 pt-2 text-xs font-bold text-royal border-t border-accent/20">
-                <span>✦ Guest Checkout Only</span>
-                <span>✦ Free Shipping Across India</span>
+              <div className="flex flex-wrap items-center gap-4 pt-3 text-xs font-extrabold text-[#0E4D3C] border-t-2 border-[#C9A227]/30">
+                <span className="flex items-center gap-1">✦ Guest Checkout Only</span>
+                <span className="flex items-center gap-1">✦ Free Shipping Across India</span>
               </div>
             </motion.div>
 
