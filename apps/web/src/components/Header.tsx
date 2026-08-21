@@ -40,7 +40,7 @@ export default function Header() {
         {/* Brand Logo */}
         <Link href="/" className="flex flex-col items-center group">
           <span className="font-serif text-3xl md:text-4xl tracking-widest text-ink group-hover:text-royal transition-colors">
-            SUVIDHA
+            FASHIONSK
           </span>
           <span className="text-[9px] uppercase tracking-[0.3em] text-accent font-sans font-semibold -mt-1">
             Royal Ethnic Wear
@@ -145,7 +145,7 @@ export default function Header() {
           >
             <div>
               <div className="flex items-center justify-between pb-6 border-b border-accent/20">
-                <span className="font-serif text-3xl tracking-widest text-accent">SUVIDHA</span>
+                <span className="font-serif text-3xl tracking-widest text-accent">FASHIONSK</span>
                 <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-accent">
                   <X className="w-6 h-6" />
                 </button>
@@ -173,7 +173,7 @@ export default function Header() {
             </div>
 
             <div className="pt-6 border-t border-accent/20 flex items-center justify-center text-xs text-base/60">
-              <span>© 2026 Suvidha Clothing. All Rights Reserved.</span>
+              <span>© 2026 FashionSK Clothing. All Rights Reserved.</span>
             </div>
           </motion.div>
         )}

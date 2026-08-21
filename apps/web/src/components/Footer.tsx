@@ -34,9 +34,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
         {/* Brand Blurb */}
         <div className="space-y-4 md:col-span-1">
-          <span className="font-serif text-3xl tracking-widest text-accent block">SUVIDHA</span>
+          <span className="font-serif text-3xl tracking-widest text-accent block">FASHIONSK</span>
           <p className="text-xs text-base/70 leading-relaxed font-sans">
-            Suvidha is dedicated to preserving the regal splendor of Indian ethnic wear. From majestic Anarkalis to contemporary Sharara sets, every piece is stitched with timeless elegance.
+            FashionSK is dedicated to preserving the regal splendor of Indian ethnic wear. From majestic Anarkalis to contemporary Sharara sets, every piece is stitched with timeless elegance.
           </p>
         </div>
 
@@ -73,7 +73,7 @@ export default function Footer() {
             Connect With Us
           </h4>
           <div className="space-y-3 text-xs text-base/80 font-sans">
-            <p><strong>Email:</strong> support@suvidhaclothing.com</p>
+            <p><strong>Email:</strong> support@fashionsk.com</p>
             <p><strong>WhatsApp:</strong> +91 98765 43210</p>
             <p><strong>Hours:</strong> Mon – Sat: 10:00 AM – 7:00 PM IST</p>
           </div>
@@ -83,7 +83,7 @@ export default function Footer() {
       {/* Bottom Copyright */}
       <div className="border-t border-accent/20 py-6 text-center text-xs text-base/50 font-sans">
         <p className="flex items-center justify-center gap-1">
-          © 2026 Suvidha Ethnic Wear. Crafted with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 inline" /> for Indian Heritage.
+          © 2026 FashionSK Ethnic Wear. Crafted with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 inline" /> for Indian Heritage.
         </p>
       </div>
     </footer>

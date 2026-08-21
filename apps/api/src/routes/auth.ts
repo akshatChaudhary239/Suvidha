@@ -56,10 +56,10 @@ router.post("/request-otp", otpRequestLimiter, async (req: Request, res: Respons
     // Send OTP via email
     await sendEmail({
       to: normalizedEmail,
-      subject: "Your Suvidha Admin Passcode",
+      subject: "Your FashionSK Admin Passcode",
       html: `
         <div style="font-family: 'Georgia', serif; padding: 20px; background-color: #FAF3E7; color: #231A15;">
-          <h2 style="color: #6B1E2A;">Suvidha Royal Admin Access</h2>
+          <h2 style="color: #6B1E2A;">FashionSK Royal Admin Access</h2>
           <p>Your one-time security code is:</p>
           <div style="font-size: 32px; font-weight: bold; letter-spacing: 6px; color: #0E4D3C; margin: 20px 0;">
             ${otp}
@@ -67,7 +67,7 @@ router.post("/request-otp", otpRequestLimiter, async (req: Request, res: Respons
           <p style="font-size: 13px; color: #666;">This code is valid for 5 minutes. If you did not request this code, please ignore this email.</p>
         </div>
       `,
-      text: `Your Suvidha Admin Security Code is: ${otp}. Valid for 5 minutes.`,
+      text: `Your FashionSK Admin Security Code is: ${otp}. Valid for 5 minutes.`,
     });
 
     return res.json({
@@ -165,7 +165,7 @@ router.post("/verify-secret-key", async (req: Request, res: Response) => {
       return res.status(401).json({ success: false, error: "Invalid Owner Secret Key" });
     }
 
-    const ownerEmail = env.ADMIN_ALLOWED_EMAILS[0] || "owner@suvidhaclothing.com";
+    const ownerEmail = env.ADMIN_ALLOWED_EMAILS[0] || "owner@fashionsk.com";
     const token = jwt.sign({ email: ownerEmail }, env.JWT_SECRET, { expiresIn: "30d" });
 
     res.cookie("suvidha_admin_session", token, {

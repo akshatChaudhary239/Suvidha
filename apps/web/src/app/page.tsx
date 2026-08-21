@@ -152,7 +152,7 @@ function HomeMain() {
         <div className="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8 pb-4 flex justify-between items-center text-xs uppercase font-sans tracking-widest font-bold">
           <span className="flex items-center gap-2 text-ink">
             <span className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
-            Suvidha Heritage Couture 2026
+            FashionSK Heritage Couture 2026
           </span>
           <span className="hidden sm:inline text-royal font-extrabold">Handcrafted Pure Silk & Zari Collection</span>
         </div>
@@ -228,7 +228,7 @@ function HomeMain() {
               <div className="relative w-full aspect-[4/3] rounded overflow-hidden">
                 <Image
                   src="/hero-banner.jpg"
-                  alt="Suvidha Royal Ethnic Wear Catalogue"
+                  alt="FashionSK Royal Ethnic Wear Catalogue"
                   fill
                   className="object-cover object-center"
                   priority

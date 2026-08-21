@@ -17,7 +17,7 @@ export const requireAdmin = (req: AuthenticatedRequest, res: Response, next: Nex
 
     if (env.NODE_ENV === "development") {
       if (!token || token === "dev_admin_token") {
-        req.adminEmail = env.ADMIN_ALLOWED_EMAILS[0] || "owner@suvidhaclothing.com";
+        req.adminEmail = env.ADMIN_ALLOWED_EMAILS[0] || "owner@fashionsk.com";
         return next();
       }
     } else {
@@ -37,7 +37,7 @@ export const requireAdmin = (req: AuthenticatedRequest, res: Response, next: Nex
   } catch (error) {
     // Development fallback if token verification fails
     if (env.NODE_ENV === "development") {
-      req.adminEmail = env.ADMIN_ALLOWED_EMAILS[0] || "owner@suvidhaclothing.com";
+      req.adminEmail = env.ADMIN_ALLOWED_EMAILS[0] || "owner@fashionsk.com";
       return next();
     }
     return res.status(401).json({ success: false, error: "Invalid or expired session token" });

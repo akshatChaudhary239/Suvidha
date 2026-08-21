@@ -110,7 +110,7 @@ function CheckoutForm() {
           key: orderData.razorpayKeyId,
           amount: Math.round(orderData.totalAmount * 100),
           currency: "INR",
-          name: "Suvidha Royal Ethnic Wear",
+          name: "FashionSK Royal Ethnic Wear",
           description: `Order ${orderData.orderNumber}`,
           order_id: orderData.razorpayOrderId,
           prefill: {

@@ -60,7 +60,7 @@ export default function OwnerGateLoginPage() {
               <Lock className="w-3 h-3 text-[#C9A227]" /> Owner Master Key Gate
             </div>
             <h1 className="font-serif text-3xl text-[#5B1420] font-bold tracking-wide">
-              Suvidha Owner Access
+              FashionSK Owner Access
             </h1>
             <p className="text-xs text-[#231A15]/70 font-sans font-medium">
               Single-step Master Key authentication

@@ -36,7 +36,7 @@ export default function Preloader() {
               animate={{ opacity: 1, y: 0 }}
               className="font-serif text-5xl md:text-7xl tracking-widest text-accent mb-2"
             >
-              SUVIDHA
+              FASHIONSK
             </motion.h1>
             <p className="font-sans text-xs tracking-widest uppercase text-base/70 mb-8">
               Heritage · Royal Craftsmanship · Elegance

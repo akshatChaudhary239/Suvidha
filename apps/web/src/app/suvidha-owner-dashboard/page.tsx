@@ -293,7 +293,7 @@ export default function OwnerDashboardPage() {
       {/* Owner Top Navbar */}
       <header className="bg-ink text-base px-6 py-4 flex items-center justify-between border-b border-accent/40">
         <div className="flex items-center gap-3">
-          <span className="font-serif text-2xl tracking-widest text-accent font-bold">SUVIDHA</span>
+          <span className="font-serif text-2xl tracking-widest text-accent font-bold">FASHIONSK</span>
           <span className="text-xs uppercase tracking-wider text-base/80 bg-white/10 px-2.5 py-0.5 rounded font-semibold flex items-center gap-1">
             <Lock className="w-3 h-3 text-accent" /> Private Owner Portal
           </span>

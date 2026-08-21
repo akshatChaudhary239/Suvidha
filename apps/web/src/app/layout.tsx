@@ -16,9 +16,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Suvidha — Royal Traditional Indian Suits & Ethnic Wear",
+  title: "FashionSK — Royal Traditional Indian Suits & Ethnic Wear",
   description:
-    "Explore Suvidha's exquisite collection of handcrafted Anarkali suits, Palazzo sets, Sharara ensembles, and ethnic suit sets. Pure silk, intricate zari, and royal craftsmanship.",
+    "Explore FashionSK's exquisite collection of handcrafted Anarkali suits, Palazzo sets, Sharara ensembles, and ethnic suit sets. Pure silk, intricate zari, and royal craftsmanship.",
 };
 
 export default function RootLayout({
