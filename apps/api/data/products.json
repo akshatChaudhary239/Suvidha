@@ -13,11 +13,9 @@
     "featured": true,
     "status": "ACTIVE",
     "createdAt": "2026-08-21T16:06:40.106Z",
-    "updatedAt": "2026-08-21T16:06:40.106Z",
+    "updatedAt": "2026-08-21T18:51:47.841Z",
     "variants": [
       {
-        "id": "var-1787328400106-0",
-        "productId": "prod-1787328400106",
         "size": "M",
         "color": "Peacock Green",
         "stock": 10
