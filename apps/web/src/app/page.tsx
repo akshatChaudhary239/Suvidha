@@ -106,9 +106,9 @@ function HomeMain() {
 
   return (
     <main className="flex-1 bg-base text-ink-dark font-sans">
-      {/* 1. HERO SECTION — Editorial Layout inspired by bilyzna-shop */}
-      <section ref={heroRef} className="relative min-h-[90vh] bg-ink text-base overflow-hidden flex flex-col justify-between">
-        <div className="absolute inset-0 z-0 opacity-50">
+      {/* 1. HERO SECTION — Editorial Cream & Gold Royal Layout */}
+      <section ref={heroRef} className="relative min-h-[90vh] bg-base text-ink-dark overflow-hidden flex flex-col justify-between border-b border-accent/30">
+        <div className="absolute inset-0 z-0 opacity-90">
           <Image
             src="/hero-banner.jpg"
             alt="Suvidha Royal Ethnic Wear Collection"
@@ -117,85 +117,90 @@ function HomeMain() {
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent z-10" />
+        {/* Soft warm ivory vignette instead of heavy dark maroon overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-base/95 via-base/80 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-base via-transparent to-base/40 z-10" />
 
         {/* Top Floating Promo Bar */}
-        <div className="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8 flex justify-between items-center text-xs text-accent uppercase font-sans tracking-widest font-semibold">
-          <span>Suvidha Festive Season 2026</span>
-          <span className="hidden sm:inline">Handcrafted Silk & Zari Collection</span>
+        <div className="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8 flex justify-between items-center text-xs text-ink uppercase font-sans tracking-widest font-bold">
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-accent animate-ping" />
+            Suvidha Festive Heritage 2026
+          </span>
+          <span className="hidden sm:inline text-royal font-semibold">Handcrafted Silk, Zari & Chanderi Suits</span>
         </div>
 
         {/* Hero Central Content */}
-        <div className="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-8 space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded bg-accent/20 border border-accent/40 text-accent text-xs font-mono uppercase font-bold"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-sm border border-accent/50 text-ink text-xs font-mono uppercase font-bold shadow-sm"
             >
-              <Sparkles className="w-3.5 h-3.5" /> High-End Royal Couture
+              <Sparkles className="w-3.5 h-3.5 text-accent" /> High-End Royal Couture
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="font-serif text-5xl sm:text-7xl md:text-8xl text-base tracking-wide font-normal leading-[1.05]"
+              className="font-serif text-5xl sm:text-7xl md:text-8xl text-ink tracking-wide font-bold leading-[1.05]"
             >
-              The Art of <br />
-              <span className="italic font-light gold-gradient-text">Royal Elegance</span>
+              Visual Depth & <br />
+              <span className="italic font-normal gold-gradient-text">Royal Elegance</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-base/80 text-sm sm:text-base font-light max-w-xl leading-relaxed"
+              className="text-ink-dark/90 text-sm sm:text-base font-medium max-w-xl leading-relaxed bg-white/60 backdrop-blur-sm p-4 rounded-sm border border-accent/20"
             >
-              Clean, timeless silhouettes designed for the modern connoisseur of Indian heritage. Explore Anarkalis, Palazzo sets, and Shararas crafted with pure silk & gold threadwork.
+              Clarity sharpens true beauty. Style reflects simplicity and confidence. Discover handcrafted Anarkalis, Sharara sets, and Palazzo ensembles designed with timeless Indian heritage.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4 pt-4"
+              className="flex flex-wrap gap-4 pt-2"
             >
               <Link
                 href="/shop"
-                className="px-8 py-4 bg-accent text-ink-dark font-sans font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-white transition-all shadow-xl inline-flex items-center gap-2 group"
+                className="px-8 py-4 bg-ink text-accent font-sans font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-royal transition-all shadow-xl inline-flex items-center gap-2 group border border-accent/40"
               >
                 Shop Collection
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/shop?category=Anarkali+Suits"
-                className="px-8 py-4 border border-accent/40 text-accent font-sans text-xs uppercase tracking-widest rounded-sm hover:bg-accent/10 transition-all font-semibold"
+                className="px-8 py-4 bg-white/90 text-ink font-sans text-xs uppercase tracking-widest rounded-sm border-2 border-ink hover:bg-ink hover:text-accent transition-all font-bold shadow-md"
               >
-                View Anarkalis
+                Explore Anarkalis
               </Link>
             </motion.div>
           </div>
 
           {/* Side Editorial Highlight Card */}
           <div className="hidden lg:block lg:col-span-4">
-            <div className="bg-white/10 backdrop-blur-md p-6 rounded border border-accent/30 text-base space-y-4 shadow-2xl">
-              <div className="relative h-64 w-full rounded overflow-hidden">
+            <div className="bg-white/90 backdrop-blur-md p-6 rounded-sm border-2 border-accent/40 text-ink-dark space-y-4 shadow-2xl">
+              <div className="relative h-64 w-full rounded overflow-hidden border border-accent/30">
                 <Image
                   src="/hero-banner.jpg"
                   alt="Spotlight Suit Ensemble"
                   fill
                   className="object-cover"
                 />
-                <span className="absolute top-2 left-2 bg-ink text-accent text-[9px] font-bold px-2 py-0.5 rounded">
+                <span className="absolute top-2 left-2 bg-ink text-accent text-[9px] font-bold px-2.5 py-1 rounded tracking-wider uppercase">
                   Spotlight
                 </span>
               </div>
-              <h3 className="font-serif text-xl font-bold text-accent">Peacock Emerald Palazzo Set</h3>
-              <p className="text-xs text-base/80">Pure Chanderi silk with hand-worked zari borders.</p>
-              <div className="flex justify-between items-center pt-2 border-t border-accent/20">
-                <span className="font-serif font-bold text-lg text-base">₹3,299.00</span>
-                <Link href="/shop" className="text-xs uppercase font-bold text-accent hover:underline">
+              <h3 className="font-serif text-xl font-bold text-ink">Heritage Zari Suit Ensemble</h3>
+              <p className="text-xs text-ink-dark/70">Pure Chanderi silk with intricate floral zari borders.</p>
+              <div className="flex justify-between items-center pt-2 border-t border-accent/30">
+                <span className="font-serif font-bold text-lg text-royal">₹3,499.00</span>
+                <Link href="/shop" className="text-xs uppercase font-bold text-ink hover:text-royal hover:underline">
                   Quick View →
                 </Link>
               </div>
@@ -204,11 +209,11 @@ function HomeMain() {
         </div>
 
         {/* Bottom Feature Pill Row */}
-        <div className="relative z-20 border-t border-accent/20 bg-ink/80 py-4 px-4">
-          <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center text-xs text-base/80 font-sans gap-4">
-            <span className="flex items-center gap-2">✓ Zero Customer Account Required (Guest Checkout)</span>
-            <span className="flex items-center gap-2">✓ Cash on Delivery & Razorpay Online Payment</span>
-            <span className="flex items-center gap-2">✓ Pure Handcrafted Indian Fabrics</span>
+        <div className="relative z-20 border-t border-accent/30 bg-white/80 backdrop-blur-md py-3.5 px-4">
+          <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center text-xs text-ink-dark font-sans font-bold gap-4">
+            <span className="flex items-center gap-2 text-royal">✓ Zero Customer Account Required (Guest Checkout)</span>
+            <span className="flex items-center gap-2 text-royal">✓ Cash on Delivery & Razorpay Online Payment</span>
+            <span className="flex items-center gap-2 text-royal">✓ Pure Handcrafted Indian Fabrics</span>
           </div>
         </div>
       </section>
