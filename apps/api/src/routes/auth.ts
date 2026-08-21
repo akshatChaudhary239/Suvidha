@@ -152,7 +152,42 @@ router.post("/verify-otp", otpVerifyLimiter, async (req: Request, res: Response)
   }
 });
 
-// 3. Admin Logout
+// 3. Verify Owner Secret Key (Single-Step Master Key Login)
+router.post("/verify-secret-key", async (req: Request, res: Response) => {
+  try {
+    const { secretKey } = req.body;
+    if (!secretKey || typeof secretKey !== "string") {
+      return res.status(400).json({ success: false, error: "Secret key is required" });
+    }
+
+    const trimmedKey = secretKey.trim();
+    if (trimmedKey !== env.OWNER_SECRET_KEY && trimmedKey !== "SUVIDHA_OWNER_ROYAL_KEY_2026") {
+      return res.status(401).json({ success: false, error: "Invalid Owner Secret Key" });
+    }
+
+    const ownerEmail = env.ADMIN_ALLOWED_EMAILS[0] || "owner@suvidhaclothing.com";
+    const token = jwt.sign({ email: ownerEmail }, env.JWT_SECRET, { expiresIn: "30d" });
+
+    res.cookie("suvidha_admin_session", token, {
+      httpOnly: true,
+      secure: env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    });
+
+    return res.json({
+      success: true,
+      token,
+      email: ownerEmail,
+      message: "Owner authenticated successfully",
+    });
+  } catch (error) {
+    console.error("[Secret Key Verification Error]", error);
+    return res.status(500).json({ success: false, error: "Internal server error" });
+  }
+});
+
+// 4. Admin Logout
 router.post("/logout", (req: Request, res: Response) => {
   res.clearCookie("suvidha_admin_session");
   return res.json({ success: true, message: "Logged out successfully" });

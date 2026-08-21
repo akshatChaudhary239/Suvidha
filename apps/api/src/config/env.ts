@@ -8,6 +8,7 @@ export const env = {
   NODE_ENV: process.env.NODE_ENV || "development",
   FRONTEND_URL: process.env.FRONTEND_URL || "http://localhost:3000",
   JWT_SECRET: process.env.JWT_SECRET || "suvidha_royal_jwt_secret_key_2026",
+  OWNER_SECRET_KEY: process.env.OWNER_SECRET_KEY || "SUVIDHA_OWNER_ROYAL_KEY_2026",
   COOKIE_SECRET: process.env.COOKIE_SECRET || "suvidha_royal_cookie_secret",
   ADMIN_ALLOWED_EMAILS: (process.env.ADMIN_ALLOWED_EMAILS || "")
     .split(",")
