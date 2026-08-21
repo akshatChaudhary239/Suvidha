@@ -20,6 +20,7 @@ import {
   Banknote,
   Image as ImageIcon,
   X,
+  Lock,
 } from "lucide-react";
 
 interface Order {
@@ -36,7 +37,7 @@ interface Order {
   items: any[];
 }
 
-export default function AdminDashboardPage() {
+export default function OwnerDashboardPage() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<"ORDERS" | "PRODUCTS">("ORDERS");
   const [orders, setOrders] = useState<Order[]>([]);
@@ -278,12 +279,12 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-      {/* Admin Top Navbar */}
+      {/* Owner Top Navbar */}
       <header className="bg-ink text-base px-6 py-4 flex items-center justify-between border-b border-accent/40">
         <div className="flex items-center gap-3">
           <span className="font-serif text-2xl tracking-widest text-accent font-bold">SUVIDHA</span>
-          <span className="text-xs uppercase tracking-wider text-base/60 bg-white/10 px-2 py-0.5 rounded">
-            Admin Panel
+          <span className="text-xs uppercase tracking-wider text-base/80 bg-white/10 px-2.5 py-0.5 rounded font-semibold flex items-center gap-1">
+            <Lock className="w-3 h-3 text-accent" /> Private Owner Portal
           </span>
           <span
             className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded flex items-center gap-1 ${
@@ -295,18 +296,18 @@ export default function AdminDashboardPage() {
                 sseConnected ? "bg-green-400 animate-pulse" : "bg-yellow-400"
               }`}
             />
-            {sseConnected ? "Live SSE Connected" : "Auto Polling (3s)"}
+            {sseConnected ? "Live Stream Connected" : "Auto Polling (3s)"}
           </span>
         </div>
 
         <button
           onClick={() => {
             localStorage.removeItem("suvidha_admin_token");
-            router.push("/admin/login");
+            router.push("/suvidha-owner-gate");
           }}
-          className="text-xs text-accent hover:text-white flex items-center gap-1.5 font-semibold"
+          className="text-xs text-accent hover:text-white flex items-center gap-1.5 font-semibold bg-white/5 px-3 py-1.5 rounded border border-accent/30 transition-colors"
         >
-          <LogOut className="w-4 h-4" /> Logout
+          <LogOut className="w-4 h-4" /> Secure Logout
         </button>
       </header>
 

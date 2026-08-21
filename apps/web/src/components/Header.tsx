@@ -77,14 +77,6 @@ export default function Header() {
             <Search className="w-5 h-5" />
           </button>
 
-          {/* Admin Login Link */}
-          <Link
-            href="/admin/login"
-            className="p-2 text-ink/70 hover:text-accent transition-colors hidden sm:block"
-            title="Admin Portal"
-          >
-            <Shield className="w-5 h-5" />
-          </Link>
 
           {/* Cart Drawer Trigger */}
           <button
@@ -180,11 +172,8 @@ export default function Header() {
               </div>
             </div>
 
-            <div className="pt-6 border-t border-accent/20 flex items-center justify-between text-xs text-base/60">
-              <Link href="/admin/login" onClick={() => setMobileMenuOpen(false)}>
-                Admin Login
-              </Link>
-              <span>© 2026 Suvidha Clothing</span>
+            <div className="pt-6 border-t border-accent/20 flex items-center justify-center text-xs text-base/60">
+              <span>© 2026 Suvidha Clothing. All Rights Reserved.</span>
             </div>
           </motion.div>
         )}

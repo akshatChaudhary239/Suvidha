@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Shield, KeyRound, ArrowRight } from "lucide-react";
 
-export default function AdminLoginPage() {
+export default function OwnerGateLoginPage() {
   const router = useRouter();
   const [step, setStep] = useState<"EMAIL" | "OTP">("EMAIL");
   const [email, setEmail] = useState("");
@@ -57,12 +57,11 @@ export default function AdminLoginPage() {
         throw new Error(data.error || "Invalid passcode");
       }
 
-      // Save token to localStorage as backup for client header
       if (data.token) {
         localStorage.setItem("suvidha_admin_token", data.token);
       }
 
-      router.push("/admin/dashboard");
+      router.push("/suvidha-owner-dashboard");
     } catch (err: any) {
       setError(err.message || "Verification failed");
     } finally {
@@ -77,8 +76,8 @@ export default function AdminLoginPage() {
           <div className="w-12 h-12 bg-ink text-accent rounded-full flex items-center justify-center mx-auto mb-3">
             <Shield className="w-6 h-6" />
           </div>
-          <h1 className="font-serif text-3xl text-ink font-bold">Suvidha Admin Portal</h1>
-          <p className="text-xs text-ink/60 font-sans mt-1">Restricted identity authentication</p>
+          <h1 className="font-serif text-3xl text-ink font-bold">Owner Access Portal</h1>
+          <p className="text-xs text-ink/60 font-sans mt-1">Private identity authentication</p>
         </div>
 
         {error && (

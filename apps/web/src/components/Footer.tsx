@@ -64,7 +64,6 @@ export default function Footer() {
             <li><Link href="#" className="hover:text-accent transition-colors">Shipping & Delivery</Link></li>
             <li><Link href="#" className="hover:text-accent transition-colors">Privacy Policy</Link></li>
             <li><Link href="#" className="hover:text-accent transition-colors">Terms & Conditions</Link></li>
-            <li><Link href="/admin/login" className="hover:text-accent transition-colors font-semibold text-accent">Admin Portal</Link></li>
           </ul>
         </div>
 
