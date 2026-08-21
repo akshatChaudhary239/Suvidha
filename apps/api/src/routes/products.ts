@@ -1,9 +1,15 @@
 import { Router, Request, Response } from "express";
-import { prisma } from "@suvidha/db";
 import { ProductSchema } from "@suvidha/types";
 import { requireAdmin } from "../middleware/auth";
 import { v2 as cloudinary } from "cloudinary";
 import { env } from "../config/env";
+import {
+  getAllProducts,
+  saveProduct,
+  updateProduct,
+  deleteProduct,
+  readLocalProducts,
+} from "../services/store";
 
 cloudinary.config({
   cloud_name: env.CLOUDINARY_CLOUD_NAME,
@@ -16,33 +22,7 @@ const router = Router();
 // PUBLIC: Get all active products with optional filters
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const { category, featured, search } = req.query;
-
-    const whereClause: any = {
-      status: "ACTIVE",
-    };
-
-    if (category) {
-      whereClause.category = String(category);
-    }
-
-    if (featured === "true") {
-      whereClause.featured = true;
-    }
-
-    if (search) {
-      whereClause.OR = [
-        { name: { contains: String(search), mode: "insensitive" } },
-        { description: { contains: String(search), mode: "insensitive" } },
-      ];
-    }
-
-    const products = await prisma.product.findMany({
-      where: whereClause,
-      include: { variants: true },
-      orderBy: { createdAt: "desc" },
-    });
-
+    const products = await getAllProducts(req.query);
     return res.json({ success: true, data: products });
   } catch (error) {
     console.error("[Get Products Error]", error);
@@ -81,32 +61,8 @@ router.post("/admin", requireAdmin, async (req: Request, res: Response) => {
       return res.status(400).json({ success: false, error: parseResult.error.flatten() });
     }
 
-    const { name, description, price, salePrice, category, coverImage, images, featured, status, variants } =
-      parseResult.data;
-
-    const product = await prisma.product.create({
-      data: {
-        name,
-        description,
-        price,
-        salePrice: salePrice || null,
-        category,
-        coverImage: coverImage || (images && images.length > 0 ? images[0] : null),
-        images,
-        featured,
-        status,
-        variants: {
-          create: variants.map((v) => ({
-            size: v.size,
-            color: v.color,
-            stock: v.stock,
-          })),
-        },
-      },
-      include: { variants: true },
-    });
-
-    return res.status(201).json({ success: true, data: product });
+    const created = await saveProduct(parseResult.data);
+    return res.status(201).json({ success: true, data: created });
   } catch (error) {
     console.error("[Create Product Error]", error);
     return res.status(500).json({ success: false, error: "Failed to create product" });
@@ -122,36 +78,8 @@ router.put("/admin/:id", requireAdmin, async (req: Request, res: Response) => {
       return res.status(400).json({ success: false, error: parseResult.error.flatten() });
     }
 
-    const { name, description, price, salePrice, category, coverImage, images, featured, status, variants } =
-      parseResult.data;
-
-    // Delete existing variants and re-create updated ones
-    await prisma.variant.deleteMany({ where: { productId: id } });
-
-    const updatedProduct = await prisma.product.update({
-      where: { id },
-      data: {
-        name,
-        description,
-        price,
-        salePrice: salePrice || null,
-        category,
-        coverImage: coverImage || (images && images.length > 0 ? images[0] : null),
-        images,
-        featured,
-        status,
-        variants: {
-          create: variants.map((v) => ({
-            size: v.size,
-            color: v.color,
-            stock: v.stock,
-          })),
-        },
-      },
-      include: { variants: true },
-    });
-
-    return res.json({ success: true, data: updatedProduct });
+    const updated = await updateProduct(id, parseResult.data);
+    return res.json({ success: true, data: updated });
   } catch (error) {
     console.error("[Update Product Error]", error);
     return res.status(500).json({ success: false, error: "Failed to update product" });
@@ -162,7 +90,7 @@ router.put("/admin/:id", requireAdmin, async (req: Request, res: Response) => {
 router.delete("/admin/:id", requireAdmin, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    await prisma.product.delete({ where: { id } });
+    await deleteProduct(id);
     return res.json({ success: true, message: "Product deleted" });
   } catch (error) {
     console.error("[Delete Product Error]", error);
@@ -170,14 +98,12 @@ router.delete("/admin/:id", requireAdmin, async (req: Request, res: Response) =>
   }
 });
 
-// PUBLIC: Get single product by ID (Placed AFTER /admin routes to prevent collision)
+// PUBLIC: Get single product by ID
 router.get("/:id", async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const product = await prisma.product.findUnique({
-      where: { id },
-      include: { variants: true },
-    });
+    const products = readLocalProducts();
+    const product = products.find((p) => p.id === id);
 
     if (!product) {
       return res.status(404).json({ success: false, error: "Product not found" });
