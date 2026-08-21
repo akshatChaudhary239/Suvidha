@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import "@/app/globals.css";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import ImageFileUpload from "@/components/ImageFileUpload";
