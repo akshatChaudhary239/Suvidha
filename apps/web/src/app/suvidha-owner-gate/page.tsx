@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import "@/app/globals.css";
 import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
