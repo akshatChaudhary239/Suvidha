@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -114,6 +114,33 @@ const bilyznaStyleProducts = [
 function HomeMain() {
   const { addToCart } = useCart();
   const heroRef = useRef<HTMLDivElement>(null);
+  const [products, setProducts] = useState<any[]>(bilyznaStyleProducts);
+
+  useEffect(() => {
+    async function loadLiveProducts() {
+      try {
+        const res = await fetch("http://localhost:5000/api/products");
+        const data = await res.json();
+        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+          const dbProducts = data.data.map((p: any) => ({
+            id: p.id,
+            name: p.name,
+            category: p.category,
+            price: p.price,
+            salePrice: p.salePrice,
+            coverImage: p.coverImage || p.images?.[0] || "/products/prod-real-1.png",
+            badge: p.featured ? "Featured" : "New Arrival",
+            size: p.variants?.[0]?.size || "M",
+            color: p.variants?.[0]?.color || "Standard",
+          }));
+          setProducts(dbProducts);
+        }
+      } catch (err) {
+        console.warn("Failed to fetch live homepage products:", err);
+      }
+    }
+    loadLiveProducts();
+  }, []);
 
   return (
     <main className="flex-1 bg-base text-ink-dark font-sans">
@@ -301,12 +328,12 @@ function HomeMain() {
               href="/shop"
               className="mt-4 md:mt-0 px-6 py-2.5 border border-ink text-ink font-sans text-xs uppercase tracking-widest hover:bg-ink hover:text-accent transition-all font-bold rounded-sm"
             >
-              Browse All Products ({bilyznaStyleProducts.length})
+              Browse All Products ({products.length})
             </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {bilyznaStyleProducts.map((item) => (
+            {products.map((item) => (
               <div
                 key={item.id}
                 className="bg-base border border-accent/20 rounded-sm overflow-hidden group hover:shadow-2xl transition-all duration-300 flex flex-col relative"

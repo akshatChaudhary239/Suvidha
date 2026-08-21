@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -86,8 +86,35 @@ const mockProducts: Product[] = [
 
 function ShopContent() {
   const { addToCart } = useCart();
-  const [products] = useState<Product[]>(mockProducts);
+  const [products, setProducts] = useState<Product[]>(mockProducts);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+
+  useEffect(() => {
+    async function loadLiveProducts() {
+      try {
+        const res = await fetch("http://localhost:5000/api/products");
+        const data = await res.json();
+        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+          // Format DB products into Product interface shape
+          const dbProducts = data.data.map((p: any) => ({
+            id: p.id,
+            name: p.name,
+            description: p.description,
+            price: p.price,
+            salePrice: p.salePrice,
+            category: p.category,
+            coverImage: p.coverImage || p.images?.[0] || "/products/prod-real-1.png",
+            images: p.images && p.images.length > 0 ? p.images : [p.coverImage || "/products/prod-real-1.png"],
+            variants: p.variants && p.variants.length > 0 ? p.variants : [{ id: `v-${p.id}`, size: "M", color: "Standard", stock: 10 }],
+          }));
+          setProducts(dbProducts);
+        }
+      } catch (err) {
+        console.warn("Failed to fetch live database products, showing fallback catalogue:", err);
+      }
+    }
+    loadLiveProducts();
+  }, []);
 
   const categories = [
     "All",
