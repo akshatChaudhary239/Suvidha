@@ -158,7 +158,7 @@ function HomeMain() {
               transition={{ delay: 0.3 }}
               className="bg-white p-6 rounded-md border-2 border-[#C9A227] text-[#231A15] shadow-xl space-y-3"
             >
-              <p className="text-base sm:text-lg font-semibold leading-relaxed text-[#231A15]">
+              <p className="text-base sm:text-lg font-bold leading-relaxed text-black" style={{ color: "#1E1713" }}>
                 Experience pure silk Anarkalis, intricate Sharara sets, and Palazzo ensembles designed for timeless grace. Handcrafted with traditional gold threadwork.
               </p>
               <div className="flex flex-wrap items-center gap-4 pt-3 text-xs font-extrabold text-[#0E4D3C] border-t-2 border-[#C9A227]/30">
