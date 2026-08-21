@@ -1,5 +1,5 @@
-import { API_URL } from "../lib/config";
 "use client";
+import { API_URL } from "../lib/config";
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
