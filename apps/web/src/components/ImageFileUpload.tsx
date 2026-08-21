@@ -1,3 +1,4 @@
+import { API_URL } from "../lib/config";
 "use client";
 
 import React, { useState } from "react";
@@ -33,7 +34,7 @@ export default function ImageFileUpload({
       try {
         // Attempt Cloudinary upload via API backend signature if available
         const token = typeof window !== "undefined" ? localStorage.getItem("suvidha_admin_token") : "";
-        const sigRes = await fetch("http://localhost:5000/api/products/admin/upload-signature", {
+        const sigRes = await fetch(`${API_URL}/api/products/admin/upload-signature`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

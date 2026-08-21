@@ -1,3 +1,4 @@
+import { API_URL } from "../../lib/config";
 "use client";
 
 import React, { useState } from "react";
@@ -62,7 +63,7 @@ function CheckoutForm() {
         paymentMethod: formData.paymentMethod,
       };
 
-      const res = await fetch("http://localhost:5000/api/orders/checkout", {
+      const res = await fetch(`${API_URL}/api/orders/checkout`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -121,7 +122,7 @@ function CheckoutForm() {
             color: "#6B1E2A",
           },
           handler: async function (response: any) {
-            const verifyRes = await fetch("http://localhost:5000/api/orders/verify-razorpay", {
+            const verifyRes = await fetch(`${API_URL}/api/orders/verify-razorpay`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({

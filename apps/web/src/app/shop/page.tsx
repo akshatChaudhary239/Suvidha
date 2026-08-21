@@ -1,3 +1,4 @@
+import { API_URL } from "../../lib/config";
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -92,7 +93,7 @@ function ShopContent() {
   useEffect(() => {
     async function loadLiveProducts() {
       try {
-        const res = await fetch("http://localhost:5000/api/products");
+        const res = await fetch(`${API_URL}/api/products`);
         const data = await res.json();
         if (data.success && Array.isArray(data.data) && data.data.length > 0) {
           // Format DB products into Product interface shape

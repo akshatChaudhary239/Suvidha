@@ -15,10 +15,15 @@ export const requireAdmin = (req: AuthenticatedRequest, res: Response, next: Nex
       token = authHeader.split(" ")[1];
     }
 
-    // In development mode, if token is missing or dev_token, allow dev admin session
-    if (!token || token === "dev_admin_token" || env.NODE_ENV === "development") {
-      req.adminEmail = env.ADMIN_ALLOWED_EMAILS[0] || "owner@suvidhaclothing.com";
-      return next();
+    if (env.NODE_ENV === "development") {
+      if (!token || token === "dev_admin_token") {
+        req.adminEmail = env.ADMIN_ALLOWED_EMAILS[0] || "owner@suvidhaclothing.com";
+        return next();
+      }
+    } else {
+      if (!token || token === "dev_admin_token") {
+        return res.status(401).json({ success: false, error: "Authentication required" });
+      }
     }
 
     const decoded = jwt.verify(token, env.JWT_SECRET) as { email: string };

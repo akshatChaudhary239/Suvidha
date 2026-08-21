@@ -1,3 +1,4 @@
+import { API_URL } from "../../lib/config";
 "use client";
 
 import React, { useState } from "react";
@@ -20,7 +21,7 @@ export default function OwnerGateLoginPage() {
     setMessage(null);
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/verify-secret-key", {
+      const res = await fetch(`${API_URL}/api/auth/verify-secret-key`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ secretKey }),

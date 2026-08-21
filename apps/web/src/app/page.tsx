@@ -1,3 +1,4 @@
+import { API_URL } from "../lib/config";
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -119,7 +120,7 @@ function HomeMain() {
   useEffect(() => {
     async function loadLiveProducts() {
       try {
-        const res = await fetch("http://localhost:5000/api/products");
+        const res = await fetch(`${API_URL}/api/products`);
         const data = await res.json();
         if (data.success && Array.isArray(data.data) && data.data.length > 0) {
           const dbProducts = data.data.map((p: any) => ({

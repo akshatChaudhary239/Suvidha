@@ -1,3 +1,4 @@
+import { API_URL } from "../../lib/config";
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -65,11 +66,8 @@ export default function OwnerDashboardPage() {
 
   const getAuthHeader = () => {
     let token = typeof window !== "undefined" ? localStorage.getItem("suvidha_admin_token") : "";
-    if (!token) {
+    if (process.env.NODE_ENV === "development" && !token) {
       token = "dev_admin_token";
-      if (typeof window !== "undefined") {
-        localStorage.setItem("suvidha_admin_token", token);
-      }
     }
     return { Authorization: `Bearer ${token}` };
   };
@@ -77,7 +75,7 @@ export default function OwnerDashboardPage() {
   // Fetch Orders
   const fetchOrders = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/orders/admin", {
+      const res = await fetch(`${API_URL}/api/orders/admin`, {
         headers: getAuthHeader(),
       });
       const data = await res.json();
@@ -94,7 +92,7 @@ export default function OwnerDashboardPage() {
   // Fetch Products
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/products");
+      const res = await fetch(`${API_URL}/api/products`);
       const data = await res.json();
       if (data.success) {
         setProducts(data.data);
@@ -105,6 +103,14 @@ export default function OwnerDashboardPage() {
   };
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("suvidha_admin_token");
+      if (process.env.NODE_ENV !== "development" && !token) {
+        router.push("/suvidha-owner-gate");
+        return;
+      }
+    }
+
     fetchOrders();
     fetchProducts();
 
@@ -116,7 +122,7 @@ export default function OwnerDashboardPage() {
     // 2. Setup SSE Real-time Order Stream
     let eventSource: EventSource | null = null;
     try {
-      eventSource = new EventSource("http://localhost:5000/api/orders/admin/stream");
+      eventSource = new EventSource(`${API_URL}/api/orders/admin/stream`);
 
       eventSource.onopen = () => {
         setSseConnected(true);
@@ -150,7 +156,7 @@ export default function OwnerDashboardPage() {
 
   const handleStatusChange = async (orderId: string, newStatus: string) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/admin/${orderId}/status`, {
+      const res = await fetch(`${API_URL}/api/orders/admin/${orderId}/status`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -231,8 +237,8 @@ export default function OwnerDashboardPage() {
 
       const isEdit = !!editingProduct;
       const url = isEdit
-        ? `http://localhost:5000/api/products/admin/${editingProduct.id}`
-        : "http://localhost:5000/api/products/admin";
+        ? `${API_URL}/api/products/admin/${editingProduct.id}`
+        : `${API_URL}/api/products/admin`;
       const method = isEdit ? "PUT" : "POST";
 
       const res = await fetch(url, {
@@ -266,7 +272,7 @@ export default function OwnerDashboardPage() {
   const handleDeleteProduct = async (id: string) => {
     if (!confirm("Are you sure you want to delete this product?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/products/admin/${id}`, {
+      const res = await fetch(`${API_URL}/api/products/admin/${id}`, {
         method: "DELETE",
         headers: getAuthHeader(),
       });
